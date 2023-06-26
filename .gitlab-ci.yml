@@ -1,0 +1,44 @@
+stages:
+  - vet
+  - test
+  - build
+
+default:
+  image: warrior7089/go-docker:latest
+
+services:  
+  - name: docker:20.10.21-dind 
+    command: ["--mtu=1300"]    
+
+
+vet:
+  stage: vet
+  script:
+    - make vet
+  only:
+    - merge_requests
+  
+test:
+  stage: test
+  script:
+    - make test
+  only:
+    - merge_requests
+
+build:
+  stage: build
+  script:
+    - make mod
+    - make build
+  only:
+    - merge_requests    
+
+docker-build:
+  stage: docker-build  
+  variables:
+    DOCKER_HOST: "tcp://docker:2376"
+    DOCKER_TLS_CERTDIR: "/certs"
+    DOCKER_TLS_VERIFY: "1"
+    DOCKER_CERT_PATH: "$DOCKER_TLS_CERTDIR/client"
+  script:
+    - docker build -t $CI_PROJECT_TITLE:latest .  
