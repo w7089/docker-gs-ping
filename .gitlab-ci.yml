@@ -2,6 +2,7 @@ stages:
   - vet
   - test
   - build
+  - docker-build
 
 default:
   image: warrior7089/go-docker:latest
@@ -41,4 +42,6 @@ docker-build:
     DOCKER_TLS_VERIFY: "1"
     DOCKER_CERT_PATH: "$DOCKER_TLS_CERTDIR/client"
   script:
-    - docker build -t $CI_PROJECT_TITLE:latest .  
+    - docker build -t $CI_PROJECT_TITLE:latest .
+  only:
+    - merge_requests   
