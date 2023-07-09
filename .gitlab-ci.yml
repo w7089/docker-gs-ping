@@ -37,5 +37,5 @@ docker-build:
     DOCKER_TLS_VERIFY: "1"
     DOCKER_CERT_PATH: "$DOCKER_TLS_CERTDIR/client"
   script:
-    - docker build -t $CI_PROJECT_TITLE:latest -f Dockerfile $(pwd)
+    - docker build $(pwd)
  
