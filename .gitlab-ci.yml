@@ -30,6 +30,7 @@ build:
 
 docker-build:
   stage: docker-build  
+  image: docker:20.10.21
   variables:
     DOCKER_HOST: "tcp://docker:2376"
     DOCKER_TLS_CERTDIR: "/certs"
