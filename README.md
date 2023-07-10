@@ -21,3 +21,5 @@ Thus, feedback is welcome, but please no nits or pedantry. Ain't nobody got time
 ## License
 
 [Apache-2.0 License](LICENSE)
+
+Discover [GitLab CI Pipeline for Go Docker apps]([url](https://rokpoto.com/go-docker-ci-in-gitlab/)). GitLab pipeline vets, tests, builds binary and docker image for go sample containerized app.
